@@ -282,7 +282,7 @@ int main(int argc, char **argv)
        
     if (clock_gettime(CLOCK_REALTIME, &ts) == -1)
      {
-        ROS_INFO("clock_gettime");
+        //ROS_INFO("clock_gettime");
         return -1;
 	 }
     ts.tv_sec += 2;
@@ -290,13 +290,13 @@ int main(int argc, char **argv)
 	  
     if (hedgeReceiveCheck())
      {// hedgehog data received
-		ROS_INFO("Address: %d, timestamp: %d, %d, X=%.3f  Y= %.3f  Z=%.3f  Angle: %.1f  flags=%d", 	
-				(int) hedge_pos_ang_msg.address,
-				(int) hedge_pos_ang_msg.timestamp_ms, 
-				(int) (hedge_pos_ang_msg.timestamp_ms - hedge_timestamp_prev),
-				(float) hedge_pos_ang_msg.x_m, (float) hedge_pos_ang_msg.y_m, (float) hedge_pos_ang_msg.z_m, 
-				(float) hedge_pos_ang_msg.angle,
-				(int) hedge_pos_msg.flags);
+		//ROS_INFO("Address: %d, timestamp: %d, %d, X=%.3f  Y= %.3f  Z=%.3f  Angle: %.1f  flags=%d", 	
+		//		(int) hedge_pos_ang_msg.address,
+		//		(int) hedge_pos_ang_msg.timestamp_ms, 
+		//		(int) (hedge_pos_ang_msg.timestamp_ms - hedge_timestamp_prev),
+		//		(float) hedge_pos_ang_msg.x_m, (float) hedge_pos_ang_msg.y_m, (float) hedge_pos_ang_msg.z_m, 
+		//		(float) hedge_pos_ang_msg.angle,
+		//		(int) hedge_pos_msg.flags);
 		hedge_pos_ang_publisher.publish(hedge_pos_ang_msg);
         hedge_pos_publisher.publish(hedge_pos_msg);
         hedge_pos_noaddress_publisher.publish(hedge_pos_noaddress_msg);
@@ -307,9 +307,9 @@ int main(int argc, char **argv)
     beaconReadIterations= 0; 
     while(beaconReceiveCheck())
      {// stationary beacons data received
-		ROS_INFO("Stationary beacon: Address: %d, X=%.3f  Y= %.3f  Z=%.3f", 	
-				(int) beacon_pos_msg.address,
-				(float) beacon_pos_msg.x_m, (float) beacon_pos_msg.y_m, (float) beacon_pos_msg.z_m);
+		//ROS_INFO("Stationary beacon: Address: %d, X=%.3f  Y= %.3f  Z=%.3f", 	
+		//		(int) beacon_pos_msg.address,
+		//		(float) beacon_pos_msg.x_m, (float) beacon_pos_msg.y_m, (float) beacon_pos_msg.z_m);
         beacons_pos_publisher.publish(beacon_pos_msg);
         
         if ((beaconReadIterations++)>4)
@@ -318,22 +318,22 @@ int main(int argc, char **argv)
      
     if (hedgeIMURawReceiveCheck())
     {
-		ROS_INFO("Raw IMU: Timestamp: %08d, aX=%05d aY=%05d aZ=%05d  gX=%05d gY=%05d gZ=%05d  cX=%05d cY=%05d cZ=%05d", 	
-				(int) hedge_imu_raw_msg.timestamp_ms,
-				(int) hedge_imu_raw_msg.acc_x, (int) hedge_imu_raw_msg.acc_y, (int) hedge_imu_raw_msg.acc_z,
-				(int) hedge_imu_raw_msg.gyro_x, (int) hedge_imu_raw_msg.gyro_y, (int) hedge_imu_raw_msg.gyro_z,
-				(int) hedge_imu_raw_msg.compass_x, (int) hedge_imu_raw_msg.compass_y, (int) hedge_imu_raw_msg.compass_z);
+		//ROS_INFO("Raw IMU: Timestamp: %08d, aX=%05d aY=%05d aZ=%05d  gX=%05d gY=%05d gZ=%05d  cX=%05d cY=%05d cZ=%05d", 	
+		//		(int) hedge_imu_raw_msg.timestamp_ms,
+		//		(int) hedge_imu_raw_msg.acc_x, (int) hedge_imu_raw_msg.acc_y, (int) hedge_imu_raw_msg.acc_z,
+		//		(int) hedge_imu_raw_msg.gyro_x, (int) hedge_imu_raw_msg.gyro_y, (int) hedge_imu_raw_msg.gyro_z,
+		//		(int) hedge_imu_raw_msg.compass_x, (int) hedge_imu_raw_msg.compass_y, (int) hedge_imu_raw_msg.compass_z);
 		hedge_imu_raw_publisher.publish(hedge_imu_raw_msg);
     } 
     
     if (hedgeIMUFusionReceiveCheck())
     {
-		ROS_INFO("IMU fusion: Timestamp: %08d, X=%.3f  Y= %.3f  Z=%.3f  q=%.3f,%.3f,%.3f,%.3f v=%.3f,%.3f,%.3f  a=%.3f,%.3f,%.3f", 	
-				(int) hedge_imu_fusion_msg.timestamp_ms,
-				(float) hedge_imu_fusion_msg.x_m, (float) hedge_imu_fusion_msg.y_m, (float) hedge_imu_fusion_msg.z_m,
-				(float) hedge_imu_fusion_msg.qw, (float) hedge_imu_fusion_msg.qx, (float) hedge_imu_fusion_msg.qy, (float) hedge_imu_fusion_msg.qz,
-				(float) hedge_imu_fusion_msg.vx, (float) hedge_imu_fusion_msg.vy, (float) hedge_imu_fusion_msg.vz,
-				(float) hedge_imu_fusion_msg.ax, (float) hedge_imu_fusion_msg.ay, (float) hedge_imu_fusion_msg.az);
+		//ROS_INFO("IMU fusion: Timestamp: %08d, X=%.3f  Y= %.3f  Z=%.3f  q=%.3f,%.3f,%.3f,%.3f v=%.3f,%.3f,%.3f  a=%.3f,%.3f,%.3f", 	
+		//		(int) hedge_imu_fusion_msg.timestamp_ms,
+		//		(float) hedge_imu_fusion_msg.x_m, (float) hedge_imu_fusion_msg.y_m, (float) hedge_imu_fusion_msg.z_m,
+		//		(float) hedge_imu_fusion_msg.qw, (float) hedge_imu_fusion_msg.qx, (float) hedge_imu_fusion_msg.qy, (float) hedge_imu_fusion_msg.qz,
+		//		(float) hedge_imu_fusion_msg.vx, (float) hedge_imu_fusion_msg.vy, (float) hedge_imu_fusion_msg.vz,
+		//		(float) hedge_imu_fusion_msg.ax, (float) hedge_imu_fusion_msg.ay, (float) hedge_imu_fusion_msg.az);
 		hedge_imu_fusion_publisher.publish(hedge_imu_fusion_msg);
     } 
     
@@ -345,10 +345,10 @@ int main(int argc, char **argv)
 		  getRawDistance(i);
 		  if (beacon_raw_distance_msg.address_beacon != 0)
 		  {
-			  ROS_INFO("Raw distance: %02d ==> %02d,  Distance= %.3f ", 	
-				(int) beacon_raw_distance_msg.address_hedge,
-				(int) beacon_raw_distance_msg.address_beacon,
-				(float) beacon_raw_distance_msg.distance_m);
+			//  ROS_INFO("Raw distance: %02d ==> %02d,  Distance= %.3f ", 	
+			//	(int) beacon_raw_distance_msg.address_hedge,
+			//	(int) beacon_raw_distance_msg.address_beacon,
+			//	(float) beacon_raw_distance_msg.distance_m);
 			  beacon_distance_publisher.publish(beacon_raw_distance_msg);
 		  }	
 		} 
