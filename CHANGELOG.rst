@@ -1,5 +1,12 @@
 Changelog for package marvelmind_nav
 
+Forthcoming
+-----------
+* ROS_INFOs along with topic publish are disabled
+* changed maintainer
+* added install targets
+* Contributors: Marc Hanheide, gpdas, thorvald
+
 1.0.8 (2018-03-15)
 ------------------
 
